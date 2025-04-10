@@ -1,0 +1,94 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 99.5%; /* #FFFEFC */
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 350 45% 40%; /* Burgundy */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 350 45% 40%; /* Burgundy */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  .handwriting {
+    @apply font-handwriting text-ode-burgundy;
+  }
+  
+  .cursive-heading {
+    @apply font-cursive text-ode-burgundy italic;
+  }
+}
+
+@layer components {
+  .message-card {
+    @apply bg-white rounded-lg shadow-md p-6 transition-all duration-300 hover:shadow-lg border border-gray-100;
+  }
+  
+  .spotify-button {
+    @apply bg-black text-white rounded-full p-2 transition-all hover:scale-105;
+  }
+  
+  .message-text {
+    @apply font-handwriting text-3xl text-ode-burgundy leading-relaxed;
+  }
+  
+  .nav-link {
+    @apply text-gray-600 hover:text-ode-burgundy font-medium transition-colors;
+  }
+  
+  .btn-primary {
+    @apply bg-ode-burgundy text-white px-6 py-2 rounded-md hover:bg-ode-darkBurgundy transition-colors duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-ode-burgundy border border-ode-burgundy px-6 py-2 rounded-md hover:bg-gray-50 transition-colors duration-300;
+  }
+  
+  .message-container {
+    @apply p-4 md:p-6 border border-gray-200 rounded-lg shadow-sm;
+  }
+  
+  .song-card {
+    @apply flex items-center bg-gray-100 rounded-md p-2;
+  }
+  
+  .info-card {
+    @apply bg-blue-100 border-l-4 border-blue-500 p-4 rounded-r-md;
+  }
+}
