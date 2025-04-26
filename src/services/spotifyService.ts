@@ -74,7 +74,7 @@ export const getClientCredentialsToken = async (): Promise<boolean> => {
       access_token: data.access_token,
       token_type: data.token_type,
       expires_in: data.expires_in,
-      expires_at: 0 // Will be set in saveToken
+      expires_at: 0
     });
     
     return true;
@@ -122,7 +122,7 @@ export const searchTracks = async (query: string): Promise<SpotifySearchResult[]
         clearToken();
         const success = await getClientCredentialsToken();
         if (success) {
-          return searchTracks(query); // Retry the search
+          return searchTracks(query);
         }
         return [];
       }
@@ -186,5 +186,5 @@ export const playSong = (previewUrl?: string): void => {
 };
 
 export const handleCallback = (): boolean => {
-  return true; // Always return true as we're not using this flow
+  return true;
 };
