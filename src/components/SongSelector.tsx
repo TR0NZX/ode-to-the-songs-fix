@@ -139,13 +139,7 @@ const SongSelector = ({ onSelect }: SongSelectorProps) => {
             className="ml-auto text-gray-500 hover:text-red-500"
             onClick={() => {
               setSelectedSong(null);
-<<<<<<< HEAD
-              onSelect({
-                id: "",
-                title: "",
-                artist: ""
-              });
-=======
+
               onSelect(null);
 >>>>>>> a1976cd (init project)
             }}
