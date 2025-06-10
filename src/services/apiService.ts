@@ -1,7 +1,11 @@
 
 import { Message, Song } from "@/types";
 
+<<<<<<< HEAD
 const API_URL = "http://localhost:5000/api";
+=======
+const API_URL = "http://localhost:8080/api";
+>>>>>>> a1976cd (init project)
 
 export const fetchMessages = async (): Promise<Message[]> => {
   try {

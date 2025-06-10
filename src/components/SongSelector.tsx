@@ -5,7 +5,11 @@ import { searchTracks, getClientCredentialsToken } from "@/services/spotifyServi
 import { Song } from "@/types";
 
 interface SongSelectorProps {
+<<<<<<< HEAD
   onSelect: (song: Song) => void;
+=======
+  onSelect: (song: Song | null) => void;
+>>>>>>> a1976cd (init project)
 }
 
 const SongSelector = ({ onSelect }: SongSelectorProps) => {
@@ -135,11 +139,15 @@ const SongSelector = ({ onSelect }: SongSelectorProps) => {
             className="ml-auto text-gray-500 hover:text-red-500"
             onClick={() => {
               setSelectedSong(null);
+<<<<<<< HEAD
               onSelect({
                 id: "",
                 title: "",
                 artist: ""
               });
+=======
+              onSelect(null);
+>>>>>>> a1976cd (init project)
             }}
           >
             Remove

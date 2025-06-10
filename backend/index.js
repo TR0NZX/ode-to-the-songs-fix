@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> a1976cd (init project)
 require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const cors = require('cors');
@@ -12,7 +15,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+<<<<<<< HEAD
 // Database connection
+=======
+// Database connection pool
+>>>>>>> a1976cd (init project)
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
@@ -24,6 +31,21 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
+<<<<<<< HEAD
+=======
+// Health check endpoint
+testDbConnection = async () => {
+  try {
+    const connection = await pool.getConnection();
+    connection.release();
+    console.log('✅ Database connection successful.');
+  } catch (err) {
+    console.error('❌ Database connection failed:', err);
+    process.exit(1);
+  }
+};
+
+>>>>>>> a1976cd (init project)
 app.get('/api/health', async (req, res) => {
   try {
     const connection = await pool.getConnection();
@@ -35,6 +57,10 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a1976cd (init project)
 app.get('/api/messages', async (req, res) => {
   try {
     const [rows] = await pool.query(`
@@ -188,7 +214,11 @@ app.post('/api/messages', async (req, res) => {
 const initDatabase = async () => {
   try {
     const connection = await pool.getConnection();
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> a1976cd (init project)
     await connection.query(`
       CREATE TABLE IF NOT EXISTS songs (
         id VARCHAR(255) PRIMARY KEY,
@@ -199,7 +229,11 @@ const initDatabase = async () => {
         preview_url VARCHAR(255)
       )
     `);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> a1976cd (init project)
     await connection.query(`
       CREATE TABLE IF NOT EXISTS messages (
         id VARCHAR(36) PRIMARY KEY,
@@ -210,6 +244,7 @@ const initDatabase = async () => {
         FOREIGN KEY (song_id) REFERENCES songs(id)
       )
     `);
+<<<<<<< HEAD
     
     const [songCount] = await connection.query('SELECT COUNT(*) as count FROM songs');
     
@@ -229,11 +264,48 @@ const initDatabase = async () => {
     console.log('Database initialized successfully');
   } catch (error) {
     console.error('Failed to initialize database:', error);
+=======
+
+    const [songCount] = await connection.query('SELECT COUNT(*) as count FROM songs');
+    if (songCount[0].count === 0) {
+      await connection.query(`
+        INSERT INTO songs (id, title, artist, album_cover, preview_url) VALUES
+        ('1', 'Always', 'Bon Jovi',
+          'https://i.scdn.co/image/ab67616d0000b273b7c05417113f613a3c76c226',
+          'https://p.scdn.co/mp3-preview/96d3a5e20256d5ab68b88eb37a62dabe7d3efe16'
+        )
+      `);
+
+      await connection.query(`
+        INSERT INTO messages (id, recipient, message, song_id, created_at) VALUES
+        ('1', 'Ode Team', 'bismillah UTS 100 amin ya ges :)))', '1', '2025-03-29')
+      `);
+    }
+
+    connection.release();
+    console.log('✅ Database initialized successfully.');
+  } catch (error) {
+    console.error('❌ Failed to initialize database:', error);
+>>>>>>> a1976cd (init project)
     process.exit(1);
   }
 };
 
+<<<<<<< HEAD
 app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
   await initDatabase();
 });
+=======
+// Start server and initialize DB
+const startServer = async () => {
+  await testDbConnection();
+  await initDatabase();
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+};
+
+startServer();
+
+>>>>>>> a1976cd (init project)
